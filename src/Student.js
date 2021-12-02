@@ -7,7 +7,10 @@ import { HStack, Divider,Box, Flex, Text,Heading, VStack, Link } from '@chakra-u
 import Login_1 from './assets/student_left.png';
 import Logo_lg from './assets/Emoji.png';
 import Logo_sm from './assets/Emoji_right.png';
+import { useNavigate } from "react-router-dom";
 
+import { CheckIcon } from '@chakra-ui/icons'
+import { Link as ReachLink } from "@reach/router";
 import { useState } from 'react';
 function Student() {
     const [data,setData] = useState({
@@ -18,11 +21,12 @@ function Student() {
         const newdata={...data}
         newdata[e.target.id] = e.target.value
         setData(newdata);
-  
-      }
+        }
+        const navigate = useNavigate();
 
 
 	return (
+
 		<Flex flexDir='row' height='100vh'>
 			<Flex flex='1' display={['none', 'none', 'block', 'block']} bg='#F2F6FE' >
 				<Flex
@@ -35,7 +39,7 @@ function Student() {
                     pt="30px"
 				>
 				
-                <Image width="550px"  src={Login_1} alt='EC_Login_1' objectFit='contain' />
+                <Image width="500px"  src={Login_1} alt='EC_Login_1' objectFit='contain' />
                 
 				</Flex>
 			</Flex>
@@ -43,8 +47,8 @@ function Student() {
 				<VStack>
                 <Flex width="820px"  mt="80px" ml="80px" mr="80px">
                 <HStack>
-                    <Box borderRadius="10px" p="4"   bg="#E3E8F2" round="" color="#5C7282" width ="60px" fontSize="20px"  textAlign="center">
-                        1   
+                    <Box borderRadius="10px" p="4"   bg="#BEDDFF" round="" color="#5C7282" width ="60px" fontSize="20px"  alignItems="center">
+                    <CheckIcon w={8} h={8} color="white" /> 
                     </Box>
                     <Box maxWidth="150px">
                         Choose type of profile
@@ -87,15 +91,21 @@ function Student() {
                 <Box width="820px" mt="36px" border="1px" borderRadius="24px" borderColor="#C9DAE0">
                 <Box pt="24px" pl="24px">
                 Core Engineering branch    
-                <Input placeholder="VIT, Vellore" bg="#F2F6FE" width="772px" color="#8091BC" ></Input>
+                <Select placeholder="Computer Science Engineering" bg="#F2F6FE" width="772px" color="#8091BC" >
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Chemical Engineering">Chemical Engineering</option>
+                </Select>
                 </Box><br/>
                 <br/>
                 </Box>
                 <br/>
                 <Box>
                 <HStack justify="center" sp={1}>
-                <Button bg="#BEDDFF" color="white" width="249px">Back</Button>
-                <Button bg="#BEDDFF" color="white" width="249px">Continue  </Button>
+            
+                <Button bg="white" color="#1684F8"borderColor="#1684F8" height="56px" border="2px" width="249px" borderRadius="16px"onClick={() => {
+                                  navigate(-1)}}>Back</Button>
+                <Button bg="#BEDDFF" color="white" height="56px" width="249px"borderRadius="16px" _hover={{ bg: "#1684F8"}}>Continue  </Button>
                 </HStack>
                 </Box>
                 </Box>

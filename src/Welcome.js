@@ -23,10 +23,37 @@ import { useNavigate } from "react-router-dom";
 function Login(props) {
   const [count, setCount] = useState("");
   const navigate = useNavigate();
+  const [bgColor, setbgColor] = useState("#F2F6FE");
+  const [bgColor1, setbgColor1] = useState("#F2F6FE");
+  const [Colour, setColour]=useState("");
+  const [Colour1, setColour1]=useState("");
+  const [bor, setBor]=useState("#C9DAE0");
+  const [bor1, setBor1]=useState("#C9DAE0");
+  const [butColor, setbutColor] = useState("#BEDDFF");
+  
+  const boxClick = (e) => {
+    setbgColor("#E8F3FF");
+    setbgColor1("#F2F6FE");
+    setCount("l");
+    setColour("#0065CF");
+    setColour1("");
+    setbutColor("#1684F8");
+    setBor("#1684F8");setBor1("#C9DAE0");
+  }
+  const boxClick1 = (e) => {
+    setbgColor("#F2F6FE");
+    setbgColor1("#E8F3FF");
+    setCount("r");
+    setColour("");
+    setColour1("#0065CF");
+    setbutColor("#1684F8");
+    setBor("#C9DAE0");
+    setBor1("#1684F8");
+  }
   console.log(props);
 
   return (
-    <Flex flexDir="row" height="100vh">
+    <Flex flexDir="row" height="105vh">
       <Flex flex="1" display={["none", "none", "block", "block"]} bg="#F2F6FE">
         <Flex
           flexDir="column"
@@ -35,14 +62,14 @@ function Login(props) {
           height="full"
         >
           <Flex>
-            <Image src={Login_1} alt="EC_Login_1" objectFit="contain" />
+            <Image width={["300px","300px","430px","430px"]} src={Login_1} alt="EC_Login_1" objectFit="contain" />
           </Flex>
         </Flex>
-      </Flex>
-      <Flex flex="1" display="block">
+      </Flex >
+      <Flex flex="1" display="block" >
         <VStack>
           <Flex width="820px" mt="80px" ml="80px" mr="80px">
-            <HStack>
+            <HStack sp={12}>
               <Box
                 borderRadius="10px"
                 p="4"
@@ -76,21 +103,28 @@ function Login(props) {
           </Flex>
           <Divider width="820px" color="black" />
           <br />
-          <Heading fontSize="4xl">I will use Engineer's Cradle as a</Heading>
-          <br />
+          <Box width="820px" textAlign="left" >
+          <Heading fontSize="4xl" fontFamily="Satoshi"fontWeight="Bold"height="62px"  >I will use Engineer's Cradle as a</Heading></Box>
+          
           <Box width="820px">
-            <HStack>
+            <HStack >
               <Box
-                bg="#F2F6FE"
+                bg={bgColor}
                 width="398px"
                 height="400px"
                 pt="40px"
                 pl="24px"
-                 onClick={() => setCount("l")}
+                mr="21px"
+                color={Colour}
+                borderColor={bor}
+                borderRadius="12px"
+                border="4px"
+                // onClick={() => setCount("l")}
+                onClick={boxClick}
                               /*onClick={() => {
                                   navigate("www.google.com")}}*/ 
-                _hover={{ bg: "#E8F3FF" }}
-                _click={{ bg: "#E8F3FF" }}
+                _hover={{ bg: "#E8F3FF",color:"#0065CF",borderColor:"#1684F8"  }}
+                _active={{ bg: "#E8F3FF" }}
               >
                 <Image
                   justifySelf="left"
@@ -108,14 +142,19 @@ function Login(props) {
                 </Text>
               </Box>
               <Box
-                bg="#F2F6FE"
+                bg={bgColor1}
                 width="398px"
                 height="400px"
                 pt="40px"
                 pl="24px"
-                onClick={() => setCount("r")}
+               // onClick={() => setCount("r")}
+               onClick={boxClick1}
                 _hover={{ bg: "#E8F3FF" }}
                 _click={{ bg: "#E8F3FF" }}
+                color={Colour1}
+                borderColor={bor1}
+                border="4px"
+                borderRadius="12px"
               >
                 <Image src={Logo_sm} alt="EC_Logo_lg" objectFit="contain" />
                 <Text mt="5px" fontSize="32px">
@@ -128,17 +167,20 @@ function Login(props) {
               </Box>
             </HStack>
             <br />
+           
             <Box textAlign="center">
-               {count==='' &&<Link  as={ReachLink} to="/studentlogin">
-                 <Button bg="#BEDDFF" color="white" width="249px">Continue</Button>
-                </Link>}
-                {count==='l' &&<Link  as={ReachLink} to="/studentlogin">
-                <Button bg="#BEDDFF" color="white" width="249px">Continue  </Button>
-                </Link>}
-                {count==='r' &&<Link  as={ReachLink} to="/proflogin">
-                <Button bg="#BEDDFF" color="white" width="249px">Continue  </Button>
-                </Link>} 
-            </Box>
+               {count==='' &&
+                 <Button bg={butColor} color="white" width="249px">Continue</Button>
+                }
+                {count==='l' &&
+                <Button bg={butColor} color="white" width="249px"onClick={() => {
+                                  navigate("/Studentlogin")}}>Continue  </Button>
+               }
+                {count==='r' &&
+                <Button bg={butColor} color="white" width="249px"onClick={() => {
+                                  navigate("/proflogin")}}>Continue  </Button>
+           } 
+           </Box>
           </Box>
         </VStack>
       </Flex>

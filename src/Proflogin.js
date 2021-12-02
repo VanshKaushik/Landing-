@@ -8,7 +8,8 @@ import Login_1 from './assets/student_left.png';
 import Logo_lg from './assets/Emoji.png';
 import Logo_sm from './assets/Emoji_right.png';
 import { useState } from 'react';
-
+import { Link as ReachLink } from "@reach/router";
+import { useNavigate } from "react-router-dom";
 
 function Proflogin() {
   
@@ -22,7 +23,7 @@ function Proflogin() {
         setData(newdata);
   
       }
-
+      const navigate = useNavigate();
 	return (
 		<Flex flexDir='row' height='100vh'>
 			<Flex flex='1' display={['none', 'none', 'block', 'block']} bg='#F2F6FE' >
@@ -70,32 +71,38 @@ function Proflogin() {
                 <Box width="820px" border="1px" borderRadius="24px" borderColor="#C9DAE0">
                 <Box pt="24px" pl="24px">
                 Type of Professional
-                <Select placeholder="Choose Domain" bg="#F2F6FE" width="772px"  color="#8091BC" id="type" name="type" onChange={(e) => handle(e)} value={data.type} >
+                <Select placeholder="Select an option" bg="#F2F6FE" width="772px"  color="#8091BC" id="type" name="type" onChange={(e) => handle(e)} value={data.type} >
 
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                
+                <option value="Faculty">Faculty</option>
+                <option value="Industrial Professional"></option>
+                <option value="Industrial Professional">Industrial Professional</option>
+                <option value="Content Writer">Content Writer</option>
+                <option value="Influence">Influencer</option>
                 </Select>
                 </Box><br/>
                 <Box pl="24px">
                 Organization name    
-                <Input placeholder="VIT, Vellore" bg="#F2F6FE" width="772px" color="#8091BC" id="desc" name="desc" onChange={(e) => handle(e)} value={data.desc}></Input>
+                <Input placeholder="University, Industry" bg="#F2F6FE" width="772px" color="#8091BC" id="desc" name="desc" onChange={(e) => handle(e)} value={data.desc}></Input>
                 </Box><br/>
                 </Box>
                 <br/>
                 <Box width="820px" mt="36px" border="1px" borderRadius="24px" borderColor="#C9DAE0">
                 <Box pt="24px" pl="24px">
                 Core Engineering branch    
-                <Input placeholder="VIT, Vellore" bg="#F2F6FE" width="772px" color="#8091BC"  ></Input>
+                <Select placeholder="Computer Science Engineering" bg="#F2F6FE" width="772px" color="#8091BC" >
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Chemical Engineering">Chemical Engineering</option>
+                </Select>
                 </Box><br/>
                 <br/>
                 </Box>
                 <br/>
                 <Box>
                 <HStack justify="center" sp={1}>
-                <Button bg="#BEDDFF" color="white" width="249px">Back</Button>
-                <Button bg="#BEDDFF" color="white" width="249px">Continue  </Button>
+                <Link  as={ReachLink} to="/studentlogin">
+                <Button bg="white" color="#1684F8"borderColor="#1684F8" height="56px" border="2px" width="249px" borderRadius="16px" onClick={() => {navigate(-1)}}>Back</Button></Link>
+                <Button bg="#BEDDFF" color="white" height="56px" width="249px"borderRadius="16px" _hover={{ bg: "#1684F8"}}>Continue  </Button>
                 </HStack>
                 </Box>
                 </Box>
